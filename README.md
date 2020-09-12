@@ -9,3 +9,5 @@ Stack is a cross-platform program for developing Haskell projects. It is intende
 
 See [haskellstack.org](http://haskellstack.org) or the [doc](./doc) directory for more
 information.
+
+For bootstrapping information, if no pre-build stack binary is available for your platform, see [BOOTSTRAP.md](./BOOTSTRAP.md).
