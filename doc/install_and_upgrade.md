@@ -139,12 +139,8 @@ so we recommend running `stack upgrade` after installing it.
 
 Use the [generic Linux option](#linux).
 
-There is also an
-unofficial
-[Fedora Copr repo](https://copr.fedoraproject.org/coprs/petersen/stack2/) which
-can be enabled with: `sudo dnf copr enable petersen/stack2`. Note that this Stack
-version may lag behind, so we recommend running `stack upgrade` after installing
-it.
+Fedora includes builds of stack, but the version may lag behind,
+so we recommend running `stack upgrade` after installing it.
 
 ## <a name="suse"></a>openSUSE / SUSE Linux Enterprise
 
@@ -254,7 +250,7 @@ or:
 
 * Ensure you have required system dependencies installed.  These include GCC, GNU make, xz, perl, libgmp, libffi, and zlib.  We also recommend Git and GPG.  To install these using your package manager:
     * Debian / Ubuntu: `sudo apt-get install g++ gcc libc6-dev libffi-dev libgmp-dev make xz-utils zlib1g-dev git gnupg netbase`
-    * Fedora / CentOS: `sudo dnf install perl make automake gcc gmp-devel libffi zlib xz tar git gnupg` (use `yum` instead of `dnf` on CentOS and Fedora <= 21)
+    * Fedora / CentOS: `sudo dnf install perl make automake gcc gmp-devel libffi zlib zlib-devel xz tar git gnupg` (use `yum` instead of `dnf` on CentOS and Fedora <= 21)
         * Fedora 24: In order to use `stack setup` on a 32-bit system, you may
           need to run `sudo dnf install ncurses-compat-libs`. If this package is
           not installed, Stack may not be able to install 32-bit GHC versions.
