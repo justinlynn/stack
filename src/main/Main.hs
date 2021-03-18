@@ -50,6 +50,7 @@ import qualified Stack.Nix as Nix
 import           Stack.FileWatch
 import           Stack.Ghci
 import           Stack.Hoogle
+import           Stack.List
 import           Stack.Ls
 import qualified Stack.IDE as IDE
 import           Stack.Init
@@ -349,6 +350,10 @@ commandLineHandler currentDir progName isInterpreter = complicatedOptions
                     "Query general build information (experimental)"
                     queryCmd
                     (many $ strArgument $ metavar "SELECTOR...")
+        addCommand' "list"
+                    "List package id's in snapshot (experimental)"
+                    listCmd
+                    (many $ strArgument $ metavar "PACKAGE")
         addSubCommands'
             "ide"
             "IDE-specific commands"
@@ -548,7 +553,7 @@ cleanCmd = withConfig NoReexec . withBuildConfig . clean
 -- | Helper for build and install commands
 buildCmd :: BuildOptsCLI -> RIO Runner ()
 buildCmd opts = do
-  when (any (("-prof" `elem`) . either (const []) id . parseArgs Escaping) (boptsCLIGhcOptions opts)) $ do
+  when (any (("-prof" `elem`) . fromRight [] . parseArgs Escaping) (boptsCLIGhcOptions opts)) $ do
     logError "Error: When building with stack, you should not use the -prof GHC option"
     logError "Instead, please use --library-profiling and --executable-profiling"
     logError "See: https://github.com/commercialhaskell/stack/issues/1015"
@@ -850,7 +855,17 @@ templatesCmd () = withConfig NoReexec templatesHelp
 queryCmd :: [String] -> RIO Runner ()
 queryCmd selectors = withConfig YesReexec $ withDefaultEnvConfig $ queryBuildInfo $ map T.pack selectors
 
--- | Generate a combined HPC report
+-- | List packages
+listCmd :: [String] -> RIO Runner ()
+listCmd names = withConfig NoReexec $ do
+    mresolver <- view $ globalOptsL.to globalResolver
+    mSnapshot <- forM mresolver $ \resolver -> do
+      concrete <- makeConcreteResolver resolver
+      loc <- completeSnapshotLocation concrete
+      loadSnapshot loc
+    listPackages mSnapshot names
+
+-- | generate a combined HPC report
 hpcReportCmd :: HpcReportOpts -> RIO Runner ()
 hpcReportCmd hropts = do
     let (tixFiles, targetNames) = partition (".tix" `T.isSuffixOf`) (hroptsInputs hropts)

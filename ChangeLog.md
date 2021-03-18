@@ -5,15 +5,41 @@
 
 Release notes:
 
-**Changes since v2.5.1:**
+**Changes since v2.5.1.1:**
 
 Major changes:
 
 Behavior changes:
 
+* `stack repl` now always warns about GHCi problems with loading multiple
+  packages. It also sets now proper working directory when invoked with
+  one package. See
+  [#5421](https://github.com/commercialhaskell/stack/issues/5421)
+
+* `custom-setup` dependencies are now properly initialized for `stack dist`.
+  This makes `explicit-setup-deps` no longer required and that option was
+  removed. See
+  [#4006](https://github.com/commercialhaskell/stack/issues/4006)
+
 Other enhancements:
 
+* Nix integration now passes `ghcVersion` (in addition to existing `ghc`) to 
+  `shell-file` as an identifier that can be looked up in a compiler attribute set.
+
+* `stack list` is a new command to list package versions in a snapshot.
+  See [#5431](https://github.com/commercialhaskell/stack/pull/5431)
+
 Bug fixes:
+
+* `stack new` now suppports branches other than `master` as default for
+  GitHub repositories. See
+  [#5422](https://github.com/commercialhaskell/stack/issues/5422)
+
+## v2.5.1.1
+
+Hackage-only release:
+
+* Support build with persistent-2.11.x and optparse-applicative-0.16.x
 
 
 ## v2.5.1
