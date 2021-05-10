@@ -4,10 +4,10 @@ cabal-version: 2.0
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: e0fafccff758c3515731220888162806b25dd39ae06a130f30cba3f9955f20dc
+-- hash: a6afbb611def761b0f0cda3b18f0ad7b389f64eb534a982f0b06bce4e4474632
 
 name:           stack
-version:        2.6.0
+version:        2.8.0
 synopsis:       The Haskell Tool Stack
 description:    Please see the documentation at <https://docs.haskellstack.org>
                 for usage information.
@@ -74,7 +74,7 @@ source-repository head
 custom-setup
   setup-depends:
       Cabal
-    , base >=4.10 && <5
+    , base >=4.13 && <5
     , filepath
 
 flag developer-mode
@@ -177,6 +177,7 @@ library
       Stack.Options.ScriptParser
       Stack.Options.SDistParser
       Stack.Options.TestParser
+      Stack.Options.UploadParser
       Stack.Options.Utils
       Stack.Package
       Stack.PackageDump

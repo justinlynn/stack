@@ -47,19 +47,15 @@ jobs:
       matrix:
         include:
         - os: ubuntu-latest
-          stack-yaml: stack-ghc-84.yaml
-          extra-suffix: ""
-          stack-args: ""
-        - os: ubuntu-latest
-          stack-yaml: stack-ghc-86.yaml
-          extra-suffix: ""
-          stack-args: ""
-        - os: ubuntu-latest
           stack-yaml: stack-ghc-88.yaml
           extra-suffix: ""
           stack-args: ""
         - os: ubuntu-latest
           stack-yaml: stack-ghc-810.yaml
+          extra-suffix: ""
+          stack-args: ""
+        - os: ubuntu-latest
+          stack-yaml: stack-nightly.yaml
           extra-suffix: ""
           stack-args: ""
         - os: ubuntu-latest
@@ -81,7 +77,7 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/.stack
-          key: ${{ runner.os }}-${{ hashFiles('${{ matrix.stack-yaml }}') }}-${{ matrix.extra-suffix }}
+          key: ${{ runner.os }}-${{ hashFiles( matrix.stack-yaml ) }}-${{ matrix.extra-suffix }}
       - shell: bash
         run: |
           set -ex

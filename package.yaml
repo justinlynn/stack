@@ -1,5 +1,5 @@
 name: stack
-version: '2.6.0'
+version: '2.8.0'
 synopsis: The Haskell Tool Stack
 description: |
   Please see the documentation at <https://docs.haskellstack.org>
@@ -22,7 +22,7 @@ github: commercialhaskell/stack
 homepage: http://haskellstack.org
 custom-setup:
   dependencies:
-  - base >=4.10 && < 5
+  - base >=4.13 && < 5
   - Cabal
   - filepath
 extra-source-files:
@@ -222,6 +222,7 @@ library:
   - Stack.Options.ScriptParser
   - Stack.Options.SDistParser
   - Stack.Options.TestParser
+  - Stack.Options.UploadParser
   - Stack.Options.Utils
   - Stack.Package
   - Stack.PackageDump

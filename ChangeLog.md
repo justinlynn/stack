@@ -5,9 +5,20 @@
 
 Release notes:
 
-**Changes since v2.5.1.1:**
+**Changes since v2.7.1:**
 
 Major changes:
+
+Behavior changes:
+
+Other enhancements:
+
+Bug fixes:
+
+
+## v2.7.1
+
+**Changes since v2.5.1.1:**
 
 Behavior changes:
 
@@ -23,17 +34,45 @@ Behavior changes:
 
 Other enhancements:
 
-* Nix integration now passes `ghcVersion` (in addition to existing `ghc`) to 
+* Nix integration now passes `ghcVersion` (in addition to existing `ghc`) to
   `shell-file` as an identifier that can be looked up in a compiler attribute set.
+
+* Nix integration now allows Nix integration if the user is ready in nix-shell.
+  This gets rid of "In Nix shell but reExecL is False" error.
 
 * `stack list` is a new command to list package versions in a snapshot.
   See [#5431](https://github.com/commercialhaskell/stack/pull/5431)
+
+* Consider GHC 9.0 a tested compiler and remove warnings.
+
+* `custom-preprocessor-extensions` is a new configuration option for allowing
+  stack to be aware of any custom preprocessors you have added to `Setup.hs`.
+  See [#3491](https://github.com/commercialhaskell/stack/issues/3491)
+
+* Added `--candidate` flag to `upload` command to upload a package candidate
+  rather than publishing the package.
+
+* Error output using `--no-interleaved-output` no longer prepends indentating
+  whitespace. This allows emacs compilation-mode and vim quickfix to locate
+  and track errors. See
+  [#5523](https://github.com/commercialhaskell/stack/pull/5523)
 
 Bug fixes:
 
 * `stack new` now suppports branches other than `master` as default for
   GitHub repositories. See
   [#5422](https://github.com/commercialhaskell/stack/issues/5422)
+
+* Ignore all errors from `hi-file-parser`. See
+  [#5445](https://github.com/commercialhaskell/stack/issues/5445) and
+  [#5486](https://github.com/commercialhaskell/stack/issues/5486).
+
+* Support basic auth in package-indices. See
+  [#5509](https://github.com/commercialhaskell/stack/issues/5509).
+
+* Add support for parsing `.hi`. files from GHC 8.10 and 9.0. See
+  [hi-file-parser#2](https://github.com/commercialhaskell/hi-file-parser/pull/2).
+
 
 ## v2.5.1.1
 
